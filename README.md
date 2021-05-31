@@ -21,7 +21,7 @@ Genel kullanım şöyle olabilir:
  
     6- Tüm kullanıcılar listelenebilir.
  
- DB DIAGRAM
+ **DB DIAGRAM**
  
  Database'de 3 tablo oluşmaktadır.
  
@@ -34,15 +34,19 @@ Genel kullanım şöyle olabilir:
   ![Db-diagram](https://user-images.githubusercontent.com/35562979/120171799-15bbf380-c20b-11eb-947d-e0a65504f862.png)
 
 
-Hexagonal Mimari
+**Hexagonal Mimari**
 
      Projenin mimarisi şu şekildedir.
 
 ![Hexagonal](https://user-images.githubusercontent.com/35562979/120171422-b4942000-c20a-11eb-9300-82ea9d6d4581.png)
 
-UYGULAMAYI ÇALIŞTIRMA
+**UYGULAMAYI ÇALIŞTIRMA**
 
-    [1] Docker ile örnekteki image'ı ayağa kaldırmak için Postgres DB ile docker file ayağa kaldırmak için
+Dockerhub TodolistApi docker image'ın indirilebileceği adres: [https://hub.docker.com/r/msahin25/todo-list-api]]
+
+İndirme komutu: **docker pull msahin25/todo-list-api**
+
+    [1] Docker ile Postgres DB ayağa kaldırmak için
 
         docker-compose -f "your-workspace"/todoList-rest-api/srcmain/resources/docker-compose.yml up -d
     
@@ -62,28 +66,31 @@ UYGULAMAYI ÇALIŞTIRMA
     
           2 nolu maddedeki device komutundaki path'e ("c:/todoapp/config") application.properties ve log4j2.xml dosyalarının kopyalanması gerekmektedir.
     
-    [5] Application.properties içindeki postgres ip'si güncellenebilir. 
+    [5] Application.properties içindeki postgres ip'si güncellenebilir. Veya application.properties ve log4j2.xml içinde dışarıdan değişiklik yapılabilir.
          
     [6] Uygulama aşağıdaki komutla çalıştırılır.
+    
            docker run -d -p 9090:9090 --name=todo-api-test --restart=always -v v_todo_api_logs:/usr/app/logs -v v_todo_api_config:/usr/app/config msahin25/todo-list-api:0.0.4
            
            -p 9090:9090 ile verilen ilk port parametresi dışarıdan api'ye erişilen portdur. Bu port değiştirilirse servis url'indeki portun değiştirilmesi gerekmektedir. 
+           
+           İkinci port parametsesi ise application.properties içindeki "server.port" değişkeni ile aynı olmalıdır.
 
 
-Eclipse üzerinden çalıştırma 
+**Eclipse üzerinden çalıştırma **
 
     [1] IDE üzerinden main sınıf olarak TodoListApplication seçilir.
     
     [2] Aşağıdaki url'ler üzerinden kullanılabilir. 
     
     
-ECLIPSE lombok kurulumu
+**ECLIPSE lombok kurulumu**
 
     Projede lombok kullanılmıştır. Eclipse'te kurulu değilse aşağıdaki gibi kurulabilir.
     https://projectlombok.org/setup/eclipse
 
 
-POST Add User
+**POST Add User**
 
       http://localhost:9090/user/addUser
 
@@ -94,19 +101,19 @@ POST Add User
         "status": "A"  
       }
 
-DELETE Delete User
+**DELETE Delete User**
 
       http://localhost:9090/user/deleteUser?username=User1
 
-GET All Users
+**GET All Users**
 
       http://localhost:9090/user/getUsers
 
-GET TodoList with list name
+**GET TodoList with list name**
 
       http://localhost:9090/list/getList?name=ReadBook&username=User1
 
-POST TodoList 
+**POST TodoList **
 
     http://localhost:9090/list/add?username=User1
 
@@ -129,19 +136,19 @@ POST TodoList
       "description": "Read book"  
     }
 
-GET All TodoList  
+**GET All TodoList  **
 
      http://localhost:9090/list/getUserList?username=User1
 
-DELETE TodoList
+**DELETE TodoList**
 
     http://localhost:9090/list/delete?name=Haberler3&username=User1
 
-GET TodoList item with item name, list name and username
+**GET TodoList item with item name, list name and username**
 
     http://localhost:9090/listItem/getItem?itemName=Küçük Prens&listName=ReadBook&username=User1
 
-POST Add TodoList item with list name and user name
+**POST Add TodoList item with list name and user name**
 
     http://localhost:9090/listItem/addItem?listName=Haberler2&username=muhammet
 
@@ -156,12 +163,12 @@ POST Add TodoList item with list name and user name
     }
 
 
-DELETE Todolist item
+**DELETE Todolist item**
 
     http://localhost:9090/list/deleteItem?itemName=Küçük Prens?listName=ReadBook&username=User1
  
  
- SONAR ANALİZ RAPORU
+ **SONAR ANALİZ RAPORU**
  
     Proje Sonar Cloud'da analiz edilmiştir. Rapor aşağıdaki gibidir.
  
