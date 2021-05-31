@@ -63,7 +63,7 @@ UYGULAMAYI ÇALIŞTIRMA
     
 
     #uygulamayı çalıştırmak için
-    #docker run -d -p 9090:9090 --name=todo-api-test --restart=always -v v_todo_api_logs:/usr/app/logs -v v_todo_api_config:/usr/app/config todo-list-api
+    #docker run -d -p 9090:9090 --name=todo-api-test --restart=always -v v_todo_api_logs:/usr/app/logs -v v_todo_api_config:/usr/app/config msahin25/todo-list-api:0.0.4
 
 
 ECLIPSE lombok kurulumu
