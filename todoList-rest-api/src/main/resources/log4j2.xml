@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitor="30">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="logs/todo.log"
+			filePattern="logs/todo-%d{MM-dd-yyyy}.log.gz" ignoreExceptions="false">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger[36] %msg%n"></PatternLayout>
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+		<RollingFile name="RollingPerfFile"
+			fileName="logs/todo.perf.log"
+			filePattern="logs/todo.perf-%d{MM-dd-yyyy}.log.gz"
+			ignoreExceptions="false">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %msg%n"></PatternLayout>
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="perf" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingPerfFile" />
+		</Logger>
+
+		<Logger name="org.hibernate.SQL" level="error"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		<Logger name="org.hibernate" level="error" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		<Logger name="org.hibernate.type" level="error"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		<Logger name="org.springframework" level="DEBUG"
+			additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+
+		<logger
+			name="org.springframework.web.filter.CommonsRequestLoggingFilter"
+			level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</logger>
+		<Logger name="com.todo" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		<Logger name="org.springframework.boot">
+			<level value="DEBUG" />
+			<appender-ref ref="console" />
+			<appender-ref ref="file" />
+		</Logger>
+
+		<Root level="DEBUG">
+			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="RollingFile" /> -->
+		</Root>
+	</Loggers>
+</Configuration>
