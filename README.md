@@ -46,18 +46,28 @@ UYGULAMAYI ÇALIŞTIRMA
 
         docker-compose -f "your-workspace"/todoList-rest-api/srcmain/resources/docker-compose.yml up -d
     
-    [2] Configleri saklamak için gerekli local path volume oluşturur
+    [2] Configleri saklamak için gerekli local path volume oluşturur. application.properties ve log4j2.xml dosyalarının dışarıdan değiştirilebilmesine olanak sağlamak için bu şekilde bir eklenti yapılmıştır.
+    
            docker volume create --name v_todo_api_config --opt type=none --opt device=c:/todoapp/config --opt o=bind
-    
-    [3] 2 nolu maddedeki device komutundaki path'e ("c:/todoapp/config") application.properties ve log4j2.xml in manuel kopyalanması gerekmektedir.
-    
-    [4] Application.properties içindeki postgres ip'si güncellenebilir. 
+         
+           device= --> config dosyasının path'i yazılmalıdır.
 
-    [5] Logları saklamak için local path volume oluşturur
+    [3] Logları saklamak için local path volume oluşturur. Uygulama logları bu dizinden görülebilir.
+    
          docker volume create --name v_todo_api_logs --opt type=none --opt device=c:/todoapp/logs --opt o=bind 
+         
+         device= --> log dosyasının path'i yazılmalıdır.         
+             
+    [4] application.properties ve log4j2.xml in manuel kopyalanması 
+    
+          2 nolu maddedeki device komutundaki path'e ("c:/todoapp/config") application.properties ve log4j2.xml dosyalarının kopyalanması gerekmektedir.
+    
+    [5] Application.properties içindeki postgres ip'si güncellenebilir. 
          
     [6] Uygulama aşağıdaki komutla çalıştırılır.
            docker run -d -p 9090:9090 --name=todo-api-test --restart=always -v v_todo_api_logs:/usr/app/logs -v v_todo_api_config:/usr/app/config msahin25/todo-list-api:0.0.4
+           
+           -p 9090:9090 ile verilen ilk port parametresi dışarıdan api'ye erişilen portdur. Bu port değiştirilirse servis url'indeki portun değiştirilmesi gerekmektedir. 
 
 
 Eclipse üzerinden çalıştırma 
