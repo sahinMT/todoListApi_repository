@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TodoListApplication {
 
 	public static void main(String[] args) {
-//      System.setProperty("server.servlet.context-path", "/");
 		SpringApplication.run(TodoListApplication.class, args);
-//		System.out.println(System.getProperty("server.servlet.context-path"));
 	}
 
 }
