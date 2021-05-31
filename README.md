@@ -46,26 +46,27 @@ UYGULAMAYI ÇALIŞTIRMA
 
         docker-compose -f "your-workspace"/todoList-rest-api/srcmain/resources/docker-compose.yml up -d
     
-    [2] IDE üzerinden main sınıf olarak TodoListApplication seçilir.
+    [2] Configleri saklamak için gerekli local path volume oluşturur
+           docker volume create --name v_todo_api_config --opt type=none --opt device=c:/todoapp/config --opt o=bind
     
-    [3] Aşağıdaki url'ler üzerinden kullanılabilir. 
+    [3] 2 nolu maddedeki device komutundaki path'e ("c:/todoapp/config") application.properties ve log4j2.xml in manuel kopyalanması gerekmektedir.
     
-    #configleri saklamak için gerekli local path volume oluşturur
-    #docker volume create --name v_todo_api_config --opt type=none --opt device=c:/todoapp/config --opt o=bind
-    
-    #c:/todoapp/config pathine application.properties ve log4j2.xml in kopyalanması
-    
-    #application properties içindeki postgres ip'sinin güncellenmesi
+    [4] Application.properties içindeki postgres ip'si güncellenebilir. 
 
-    #logları saklamak için gerekli local path volume oluşturur
-    #docker volume create --name v_todo_api_logs --opt type=none --opt device=c:/todoapp/logs --opt o=bind
-    
-    
-
-    #uygulamayı çalıştırmak için
-    #docker run -d -p 9090:9090 --name=todo-api-test --restart=always -v v_todo_api_logs:/usr/app/logs -v v_todo_api_config:/usr/app/config msahin25/todo-list-api:0.0.4
+    [5] Logları saklamak için local path volume oluşturur
+         docker volume create --name v_todo_api_logs --opt type=none --opt device=c:/todoapp/logs --opt o=bind 
+         
+    [6] Uygulama aşağıdaki komutla çalıştırılır.
+           docker run -d -p 9090:9090 --name=todo-api-test --restart=always -v v_todo_api_logs:/usr/app/logs -v v_todo_api_config:/usr/app/config msahin25/todo-list-api:0.0.4
 
 
+Eclipse üzerinden çalıştırma 
+
+    [1] IDE üzerinden main sınıf olarak TodoListApplication seçilir.
+    
+    [2] Aşağıdaki url'ler üzerinden kullanılabilir. 
+    
+    
 ECLIPSE lombok kurulumu
 
     Projede lombok kullanılmıştır. Eclipse'te kurulu değilse aşağıdaki gibi kurulabilir.
