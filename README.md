@@ -44,7 +44,7 @@ Genel kullanım şöyle olabilir:
 
 Dockerhub TodolistApi docker image'ın indirilebileceği adres: [https://hub.docker.com/r/msahin25/todo-list-api]]
 
-İndirme komutu: **docker pull msahin25/todo-list-api**
+Docker image indirme komutu: **docker pull msahin25/todo-list-api**
 
     [1] Docker ile Postgres DB ayağa kaldırmak için
 
