@@ -6,5 +6,5 @@ if [ -n "$PID" ]
 else
         echo "starting TodoListApp"
         cd /usr/app;
-        java -Dfile.encoding=UTF-8 -DTodoListApp -jar /usr/app/app.jar --spring.config.location=/usr/app/config/application.properties 2>&1
+        java -Dfile.encoding=UTF-8 -DTodoListApp -cp "/usr/app/app.jar:/usr/app/lib/*:/usr/app/config/*" com.todo.TodoListApplication 2>&1
 fi
