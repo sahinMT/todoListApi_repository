@@ -24,9 +24,6 @@ alter table todo_list
 	add constraint TodoList_pk
 		primary key (id);
 
-alter table todo_list
-	add user_id int;
-
 comment on column todo_list.user_id is 'Fk of User table';
 
 alter table todo_list
